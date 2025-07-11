@@ -218,9 +218,7 @@ func signingParamsForPublicKey(pub interface{}, requestedSigAlgo x509.SignatureA
 		pubType = x509.Ed25519
 		hashFunc = crypto.SHA512
 		sigAlgo.Algorithm = oidSignatureEd25519 // EdDSA OID
-		sigAlgo.Parameters = asn1.RawValue{
-			Tag: 5,
-		}
+		// Do not set sigAlgo.Parameters — RFC 8410 says it MUST be absent
 
 	default:
 		err = errors.New("x509: only RSA, ECDSA and EdDSA keys supported")
