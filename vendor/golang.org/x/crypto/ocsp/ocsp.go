@@ -216,7 +216,7 @@ func signingParamsForPublicKey(pub interface{}, requestedSigAlgo x509.SignatureA
 
 	case ed25519.PublicKey:
 		pubType = x509.Ed25519
-		hashFunc = crypto.SHA512
+		hashFunc = 0 // EdDSA does not use external hash
 		sigAlgo.Algorithm = oidSignatureEd25519 // EdDSA OID
 		// Do not set sigAlgo.Parameters — RFC 8410 says it MUST be absent
 
